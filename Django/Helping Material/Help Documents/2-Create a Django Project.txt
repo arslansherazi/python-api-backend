@@ -1,0 +1,11 @@
+//Project is a collection of apps(Web Pages ) and some setting codes.
+//Go to the Directory where we want to create project and execute the following command to create new Django Project.
+
+Syntax:-
+
+Directory> django-admin startproject project_name
+
+Example:-
+
+D:\Prog\Python\Django> django-admin startproject myProject
+

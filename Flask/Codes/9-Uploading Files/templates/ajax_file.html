@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Upload File using Ajax(jQuery)</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/static/js/csrf_token.js"></script>
+    </head>
+
+    <body>
+        <input type="file" id="ajax_file"/> <br />
+        <input type="submit" id="upload" value="Upload" /><br>
+        <br><a href="/view_files/ajax_file">View Files</a>
+    </body>
+
+    <script>
+        $(document).ready(function ()
+        {
+			$("#upload").click(function()
+            {
+                let form_data = new FormData();
+                let file = $("#ajax_file")[0].files[0];
+                form_data.append('ajax_file', file);
+
+               jQuery.ajax({
+                    url: 'upload_ajax_file',
+                    type: 'POST',
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    success: function(response)
+                    {
+                        alert(response);
+                    }
+                });
+            });
+		});
+    </script>
+</html>

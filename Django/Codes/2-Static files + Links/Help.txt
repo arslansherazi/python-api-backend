@@ -1,0 +1,5 @@
+=>If static files are not running then add the following line below STATIC_URL = '/static/' under project's settings.py
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+=>After this run the following command 
+  python manage.py collectstatic

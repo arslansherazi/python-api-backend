@@ -1,0 +1,53 @@
+	{% include 'Admin/Header.html'  %}
+	{% include 'Admin/SideBar.html' %}
+
+     <div id="mbd_div2">
+         <div id="body_header"><span id="body_header_text">Tell a Friend Requests</span></div>
+
+     <form method='post' action='{% url 'admin_friend_approval' %}'>
+         {% csrf_token %}
+         <table style='border:none;width:50%;position:relative;top:40px;text-align:left;'>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Name</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Name}}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Email</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Email }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Friend Name</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.FName }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Friend Email</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.FEmail }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Comments</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Comments }}</th>
+             </tr>
+
+         </table>
+
+          <input type="hidden" name="name" value="{{ data.Name }}">
+          <input type="hidden" name="email" value="{{ data.Email }}">
+          <input type="hidden" name="fname" value="{{ data.FName }}">
+          <input type="hidden" name="femail" value="{{ data.FEmail }}">
+          <input type="hidden" name="comments" value="{{ data.Comments }}">
+
+         <button type='submit' style='position:relative;top:60px;left:-40px'>Approve</button>
+
+     </form>
+         <a href='{% url 'admin_tell_friend' %}'><button style='position:relative;top:40px;left:40px'>Go Back</button></a>
+
+     	</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	

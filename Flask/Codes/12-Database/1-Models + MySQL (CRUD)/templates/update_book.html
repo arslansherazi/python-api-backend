@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update Book</title>
+</head>
+<body>
+    <div>
+        <h2>Update Book</h2>
+        <form method="post" action="/update_book_form">
+            Book Number:<br>
+            <input type="hidden" name="book_id" value={{book.id}}>
+            <input type="text" name="code" value="{{book.code}}" readonly><br>
+            Book Name:<br>
+            <input type="text" name="name" value="{{book.name}}"><br>
+            Author Name:<br>
+            <input type="text" name="author" value="{{book.author}}"><br>
+            Book Price:<br>
+            <input type="number" name="price" value="{{book.price}}"><br>
+            Availability:
+            {% if book.is_available %}
+                <input type="radio" name="availability" value="1" checked>YES
+                <input type="radio" name="availability" value="0">NO<br>
+            {% else %}
+                <input type="radio" name="availability" value="1">YES
+                <input type="radio" name="availability" value="0" checked>NO<br>
+            {% endif %}
+            <br><button type="submit">Update Book</button>
+        </form>
+    </div>
+</body>
+</html>

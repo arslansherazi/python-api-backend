@@ -1,0 +1,57 @@
+	{% include 'Admin/Header.html'  %}
+	{% include 'Admin/SideBar.html' %}
+
+     <div id="mbd_div2">
+         <div id="body_header"><span id="body_header_text">Manage Fares</span></div>
+
+      {% if not fares %}
+          <h2>No schedule is available yet</h2>
+          <a href='{% url 'admin_fares_new' %}'><button style='font-size:12px;'>--Add New--</button>
+      {% else %}
+         <table style='border:none;width:90%;position:relative;top:40px;text-align:center;'>
+            <tr>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>From</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>To</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Fare</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Options</th>
+            </tr>
+
+             {% for f in fares %}
+             <form action='{% url 'admin_fares_options' %}' method='post'>
+             {% csrf_token %}
+                 <tr>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ f.From }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ f.To }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ f.Fare }}</td>
+
+                     <input type='hidden' name='from' value='{{ f.From }}'>
+                     <input type='hidden' name='to' value='{{ f.To }}'>
+                     <input type='hidden' name='fare' value='{{ f.Fare }}'>
+
+                     <td style='background-color:#B9CEE0;padding:5px;'><button style='font-size:12px;' type='submit' name='edit' value='edit'>Edit</button><button style='font-size:12px;' type='submit' name='cancel' value='cancel'>Cancel</button></td>
+                 </tr>
+             </form>
+             {% endfor %}
+
+          <tr>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+          </tr>
+
+             <tr>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'> <a href='{% url 'admin_fares_new' %}'><button style='font-size:12px;'>--Add New--</button></a></td>
+                </tr>
+         </table>
+
+     {% endif %}
+
+     	</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	

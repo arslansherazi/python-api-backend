@@ -1,0 +1,50 @@
+//Database should be defined for Django Project
+
+=> First go to the project where we have created it.
+=> In Project Folder,there is another folder with same project name,go to this folder.
+=> in this folder, there is python file name settings.py , open this file.
+=> in this file ,there is a section with name DATABASES.changing this section we can define database(sqlite,mySQL,postgres,oracle etc) for our project.
+=> sqlite3 is by default database for our project.
+
+//After defining the database type for our project the following command is used to create database for our project.
+
+Syntax:-
+
+Project Directory> python manage.py runserver
+
+Example:-
+
+D:\Prog\Python\Django> python manage.py runserver
+
+
+//The above command creates the database file for project as well as run the localhost server for our project
+which is accessed through 127.0.0.1:8000 in the browser.
+
+
+
+
+
+
+												########MySql Database setup########
+												
+=>Add the following code in DATABASES section located in settings.py to make MySql database as default database for our project
+
+Syntax:-
+
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'name of database here' ,
+		'USER': 'username of database here' ,
+		'PASSWORD': 'password of database here' ,
+    }
+
+Example:-
+
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.mysql',
+			'NAME': 'btrs' ,
+			'USER': 'root' ,
+			'PASSWORD': '' ,
+		}
+	}

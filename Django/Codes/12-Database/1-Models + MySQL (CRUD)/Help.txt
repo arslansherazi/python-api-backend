@@ -1,0 +1,4 @@
+=>MySQL configurations should be added in projects's settings.py under DATABASES section
+
+=>To solve error <Book has no "objects" attribute> add following line into the model (see from Coding/models.py)
+	objects = models.Manager()

@@ -1,0 +1,12 @@
+{% include 'Header.html' %}
+
+<h2>{{data['name']}}</h2>
+<h4>{{data['cgpa']}}</h4>
+
+<ul>
+    {% for num in data['array'] %}
+        <li>{{num}}</li>
+    {% endfor %}
+</ul>
+
+{% include 'Footer.html' %}

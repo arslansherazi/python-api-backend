@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Book</title>
+</head>
+<body>
+    <div>
+        <h2>Add New Book</h2>
+        <form method="post" action="/add_book_form">
+            Book Code:<br>
+            <input type="text" name="code"><br>
+            Book Name:<br>
+            <input type="text" name="name"><br>
+            Author Name:<br>
+            <input type="text" name="author"><br>
+            Book Price:<br>
+            <input type="number" name="price"><br>
+            Availability:
+            <input type="radio" name="availability" value="1">YES
+            <input type="radio" name="availability" value="0">NO<br>
+
+            <br><button type="submit">Add Book</button>
+        </form>
+    </div>
+</body>
+</html>

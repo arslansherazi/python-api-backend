@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Books Catalog</title>
+    </head>
+
+    <body>
+        <div>
+            <h2>Books Catalog</h2>
+            <table style="width:100%">
+                <tr>
+                    <th align="left">Book Code</th>
+                    <th align="left">Book Name</th>
+                    <th align="left">Book Author</th>
+                    <th align="left">Book Price</th>
+                    <th align="left">Options</th>
+                </tr>
+
+                {% for book in books %}
+                    <form action="{% url 'updateDelete' %}" method="post">
+                    {% csrf_token %}
+                        <tr>
+                            <td>{{book.id}}</td>
+                            <input type="hidden" value={{book.id}} name="id"/>
+                            <td>{{book.name}}</td>
+                            <td>{{book.author}}</td>
+                            <td>{{book.price}}</td>
+                            <td>
+                                <input type="submit" name="update" value="Update">
+                                <input type="submit" name="delete" value="Delete">
+                            </td>
+                        </tr>
+                    </form>
+                {% endfor %}
+        </table>
+        </div>
+    </body>
+</html>

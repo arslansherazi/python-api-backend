@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Upload Files</title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <script>
+                function delete_file(elem)
+                {
+                    let file_path = elem.name;
+                    $(document).ready(function () {
+                        $.get("/delete_ajax_file",
+                            {
+                                file_path: file_path
+                            },
+                            function (data) {
+                                if (data == "success")
+                                {
+                                    alert("File is deleted successfully");
+                                    //delete file from files list
+						            let index = elem.parentNode.parentNode.rowIndex;
+						            let files_table = document.getElementById("files_table")
+						            files_table.deleteRow(index)
+                                    if(files_table.rows.length==0)
+                                    {
+                                        $('#no_file').css("visibility", "visible");
+                                    }
+                                } else
+                                    alert("Sorry there is a problem. File is not deleted");
+                            });
+                    });
+                }
+        </script>
+    </head>
+
+    <body>
+        <table id="files_table">
+            {% for name, path in files['files_dict'].items() %}
+                    <tr>
+                        <td>
+                            <p>{{ name }}</p>
+                        </td>
+                        <td>
+                            <a href="/download_file?file_path={{ path }}&file_name={{ name }}">Download</a>
+                        </td>
+                        <td>
+                            <button onclick="delete_file(this)" name="{{ path }}" id="delete_btn">Delete</button>
+                        </td>
+                    </tr>
+            {% endfor %}
+        </table>
+
+
+        <h2 id="no_file" style="visibility: hidden">No file is uploaded yet</h2>
+    </body>
+</html>

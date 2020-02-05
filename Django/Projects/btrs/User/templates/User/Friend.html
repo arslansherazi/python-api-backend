@@ -1,0 +1,41 @@
+	{% include 'User/Header.html'  %}
+	{% include 'User/SideBar.html' %}
+	
+			<div id="mbd_div2">
+				<div id="body_header"><span id="body_header_text">Tell A Friend</span></div>
+
+				<form style="position:relative" name="friend_form" method="post" action="{% url 'user_friendForm' %}" onsubmit="return validateFriendForm()">
+                    {% csrf_token %}
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Your Name:</label>
+					<input type="text" size="30"  style="position:absolute;left:250px;" value="{{ data.Name }}" disabled/>
+                    <input type="hidden" name="name" id="name" value="{{ data.Name }}"/>
+                    <label style="font-size:12px;color:red;position:absolute;left:510px;" id="name_label"></label>
+
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Your Email:</label>
+					<input type="email" size="30" name="email" id="email" style="position:absolute;left:250px;" value="{{ data.Email }}" disabled />
+                    <input type="hidden" name="email" id="email" value="{{ data.Email }}"/>
+                    <label style="font-size:12px;color:red;position:absolute;left:510px;" id="email_label"></label>
+
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Friend's Name:</label>
+					<input type="text" size="30" name="fname" id="fname" style="position:absolute;left:250px;" />
+					<label style="font-size:12px;color:red;position:absolute;left:500px;">*</label>
+					<label style="font-size:12px;color:red;position:absolute;left:510px;" id="fname_label"></label>
+
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Friend's Email:</label>
+					<input type="email" size="30" name="femail" id="femail" style="position:absolute;left:250px;" />
+					<label style="font-size:12px;color:red;position:absolute;left:500px;">*</label>
+					<label style="font-size:12px;color:red;position:absolute;left:510px;" id="femail_label"></label>
+
+					<br><br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Comments(Optional):</label>
+					<textarea rows="10" cols="50" name="comments" id="comments" style="position:absolute;left:250px;resize:none;" ></textarea>
+
+					<input type="reset" value="    clear    " name="clear" id="clear" style="position:absolute;left:250px;top:360px;">
+					<input type="submit" value="    send    " name="send" id="send" style="position:absolute;left:350px;top:360px;" onclick="validateFriendForm()" />
+
+					<label style="font-size:14px;position:absolute;left:250px;top:400px;">Fields with <span style="color:red;">*</span> are Required.</label>
+				</form>
+			</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html' %}

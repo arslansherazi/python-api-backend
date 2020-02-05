@@ -1,0 +1,2 @@
+=>If any problem occurs related to sessions then following command should be run
+	python manage.py migrate (It migrates sessions related dependencies to database)

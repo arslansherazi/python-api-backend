@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Upload Files</title>
+    </head>
+
+    <body>
+            {% for name, path in files['files_dict'].items() %}
+                <table>
+                    <tr>
+                        <td>
+                            <p>{{ name }}</p>
+                        </td>
+                        <td>
+                            <a href="/download_file?file_path={{ path }}&file_name={{ name }}">Download</a>
+                        </td>
+                        <td>
+                            <a href="/delete_file?file_path={{ path }}&file_name={{ name }}">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+    </body>
+</html>

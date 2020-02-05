@@ -1,0 +1,67 @@
+	{% include 'Admin/Header.html'  %}
+	{% include 'Admin/SideBar.html' %}
+
+     <div id="mbd_div2">
+         <div id="body_header"><span id="body_header_text">Manage Buses</span></div>
+
+      {% if not buses %}
+          <h2>No bus is scheduled yet</h2>
+          <a href='{% url 'admin_buses_new' %}'><button style='font-size:12px;'>--Add New--</button>
+      {% else %}
+         <table style='border:none;width:90%;position:relative;top:40px;text-align:center;'>
+            <tr>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>From</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>To</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Date</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Departure</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Arrival</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Options</th>
+            </tr>
+
+             {% for b in buses %}
+             <form action='{% url 'admin_buses_options' %}' method='post'>
+             {% csrf_token %}
+                 <tr>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ b.From }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ b.To }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ b.Date }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ b.Departure }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ b.Arrival }}</td>
+
+                     <input type='hidden' name='from' value='{{ b.From }}'>
+                     <input type='hidden' name='to' value='{{ b.To }}'>
+                     <input type='hidden' name='date' value='{{ b.Date }}'>
+                     <input type='hidden' name='dept' value='{{ b.Departure }}'>
+                     <input type='hidden' name='arri' value='{{ b.Arrival }}'>
+
+                     <td style='background-color:#B9CEE0;padding:5px;'><button style='font-size:12px;' type='submit' name='edit' value='edit'>Edit</button><button style='font-size:12px;' type='submit' name='cancel' value='cancel'>Cancel</button></td>
+                 </tr>
+             </form>
+             {% endfor %}
+
+          <tr>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                </tr>
+
+              <tr>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'></td>
+                    <td style='background-color:white;padding:5px;'> <a href='{% url 'admin_buses_new' %}'><button style='font-size:12px;'>--Add New--</button></a></td>
+                </tr>
+         </table>
+
+     {% endif %}
+
+     	</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	
