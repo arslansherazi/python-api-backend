@@ -4,6 +4,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # apis' urls
-    path('apis/', include('mongodb_client.routing')),
+    path('student_apis', include('apis.urls'))
 ]
