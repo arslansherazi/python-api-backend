@@ -54,8 +54,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'student_database',
-        'USER': 'debian-sys-maint',
-        'PASSWORD': 'eYkkCS20RRPsuvcO',
+        'USER': 'root',
+        'PASSWORD': 'rootroot',
     }
 }
 
