@@ -3,3 +3,4 @@ venv/
 __pycache__/
 logs/
 migrations/
+.DS_Store
