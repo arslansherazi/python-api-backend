@@ -61,10 +61,10 @@ def upload_any_file():
         return redirect('/message')
     else:
         filename = secure_filename(file.filename)
-        if not os.path.exists('Uploads/AllFormats'):
-            os.makedirs('Uploads/AllFormats')
+        if not os.path.exists('uploads/all_formats'):
+            os.makedirs('uploads/all_formats')
         try:
-            file.save(os.path.join('Uploads/AllFormats/', filename))
+            file.save(os.path.join('uploads/all_formats/', filename))
             session['message'] = 'File is uploaded successfully'
         except Exception as e:
             session['message'] = str(e)
@@ -79,12 +79,12 @@ def upload_multiple_files():
         return redirect('/message')
     else:
         token = 1
-        if not os.path.exists('Uploads/MultipleFiles'):
-            os.makedirs('Uploads/MultipleFiles')
+        if not os.path.exists('uploads/multiple_files'):
+            os.makedirs('uploads/multiple_files')
         for file in files:
             filename = secure_filename(file.filename)
             try:
-                file.save(os.path.join('Uploads/MultipleFiles/', filename))
+                file.save(os.path.join('uploads/multiple_files/', filename))
             except Exception as e:
                 token = 0
                 session['message'] = str(e)
@@ -106,10 +106,10 @@ def upload_specific_size_file():
         file_size_in_mbs = file_size_in_kbs / 1000
         if file_size_in_kbs >= 10.0 and file_size_in_mbs <= 5.0:
             filename = secure_filename(file.filename)
-            if not os.path.exists('Uploads/ParticularSizeFiles'):
-                os.makedirs('Uploads/ParticularSizeFiles')
+            if not os.path.exists('uploads/ParticularSizeFiles'):
+                os.makedirs('uploads/ParticularSizeFiles')
             try:
-                file.save(os.path.join('Uploads/ParticularSizeFiles/', filename))
+                file.save(os.path.join('uploads/ParticularSizeFiles/', filename))
                 session['message'] = 'File is uploaded successfully'
             except Exception as e:
                 session['message'] = str(e)
@@ -131,10 +131,10 @@ def upload_particular_format_file():
         file_extension_check = file_extension in allowed_extensions
         if file_extension_check:
             filename = secure_filename(file.filename)
-            if not os.path.exists('Uploads/ParticularFormats'):
-                os.makedirs('Uploads/ParticularFormats')
+            if not os.path.exists('uploads/particular_formats'):
+                os.makedirs('uploads/particular_formats')
             try:
-                file.save(os.path.join('Uploads/ParticularFormats/', filename))
+                file.save(os.path.join('uploads/particular_formats/', filename))
                 session['message'] = 'File is uploaded successfully'
             except Exception as e:
                 session['message'] = str(e)
@@ -151,10 +151,10 @@ def upload_ajax_file():
         return 'no file is selected'
     else:
         filename = secure_filename(file.filename)
-        if not os.path.exists('Uploads/AjaxFiles'):
-            os.makedirs('Uploads/AjaxFiles')
+        if not os.path.exists('uploads/AjaxFiles'):
+            os.makedirs('uploads/AjaxFiles')
         try:
-            file.save(os.path.join('Uploads/AjaxFiles/', filename))
+            file.save(os.path.join('uploads/AjaxFiles/', filename))
             return 'File is uploaded successfully'
         except Exception as e:
             return str(e)
@@ -167,12 +167,12 @@ def upload_ajax_multiple_files():
         return 'no file(s) is selected'
     else:
         token = 1
-        if not os.path.exists('Uploads/AjaxMultipleFiles'):
-            os.makedirs('Uploads/AjaxMultipleFiles')
+        if not os.path.exists('uploads/AjaxMultipleFiles'):
+            os.makedirs('uploads/AjaxMultipleFiles')
         for file in files:
             filename = secure_filename(file.filename)
             try:
-                file.save(os.path.join('Uploads/AjaxMultipleFiles/', filename))
+                file.save(os.path.join('uploads/AjaxMultipleFiles/', filename))
             except Exception as e:
                 token = 0
                 return str(e)
@@ -184,22 +184,22 @@ def upload_ajax_multiple_files():
 @app.route('/view_files/<type>')
 def view_files(type):
     if type == 'all_formats':
-        path = 'Uploads/AllFormats'
+        path = 'uploads/all_formats'
         files_dict = make_files_dict(path)
     elif type == 'multiple_files':
-        path = 'Uploads/MultipleFiles'
+        path = 'uploads/multiple_files'
         files_dict = make_files_dict(path)
     elif type == 'specific_formats':
-        path = 'Uploads/ParticularFormats'
+        path = 'uploads/particular_formats'
         files_dict = make_files_dict(path)
     elif type == 'ajax_file':
-        path = 'Uploads/AjaxFiles'
+        path = 'uploads/AjaxFiles'
         files_dict = make_files_dict(path)
     elif type == 'ajax_multiple_files':
-        path = 'Uploads/AjaxMultipleFiles'
+        path = 'uploads/AjaxMultipleFiles'
         files_dict = make_files_dict(path)
     else:
-        path = 'Uploads/ParticularSizeFiles'
+        path = 'uploads/ParticularSizeFiles'
         files_dict = make_files_dict(path)
 
     if files_dict:
