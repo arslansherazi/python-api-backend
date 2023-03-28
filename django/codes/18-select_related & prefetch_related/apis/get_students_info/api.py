@@ -2,7 +2,7 @@ import time
 
 from models import Student, StudentProfile, Course
 
-from django.Codes.common.base_resource import BasePostResource
+from django.codes.common.base_resource import BasePostResource
 
 
 class GetStudentsInfo(BasePostResource):
