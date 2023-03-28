@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+		<title>Bus Ticket Reservation System</title>
+		<link rel="icon" type="image/jpg" href="{% static 'images/title.png' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'CSS/btrs.css' %}">
+		<script src="/static/JS/btrs.js" type="text/javascript"></script>
+		<meta name="viewport" content="width=device-width">
+	</head>
+
+	<body onload="myFunction()">
+		<div id="loader"></div>
+		<div style="display:none;" id="myDiv">
+										<!-- Header !-->
+		<div id="header">
+			<label id="headerTitle"><div class="marquee"><div><span>Bus Ticket Reservation System</span></div></div></label>
+			<img src="/static/images/header_image.png" alt="Bus Ticket Reservation System" id="header_image" />
+
+			<div style="position:absolute;right:10%;margin:5px;border:2px solid white;padding:5px;">
+				<form method="post" action="{% url 'guest_login_form' %}" id="header_form" name="header_form" onsubmit="return validateLoginHeader();">
+                    {% csrf_token %}
+					<label>User ID:</label>&nbsp;&nbsp;
+					<input type="text" size="20" name="user"/>
+
+					<br><br><label>Password:</label>
+					<input type="password" size="20" name="password"/>
+
+					<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="submit" value="    login    " name="header_login"/>
+				</form>
+			</div>
+		</div>
+
+
+						<!-- Nav Bar !-->
+		<div id="nav_bar">
+			<a href="{% url 'index' %}" id="Home" class="nav_link">HOME</a>
+			<label style="position:absolute;font-size:14px;left:260px;color:#3F5765;top:8px;">|</label>
+
+			<a href="{% url 'register' %}" id="Register" class="nav_link">REGISTER</a>
+			<label style="position:absolute;font-size:14px;left:420px;color:#3F5765;top:8px;">|</label>
+
+			<a href="{% url 'faqs' %}" id="Faqs" class="nav_link">FAQs</a>
+			<label style="position:absolute;font-size:14px;left:549px;color:#3F5765;top:8px;">|</label>
+
+			<a href="{% url 'friend' %}" id="Tell" class="nav_link">TELL A FRIEND</a>
+			<label style="position:absolute;font-size:14px;left:742px;color:#3F5765;top:8px;">|</label>
+
+			<a href="{% url 'feedback' %}" id="Feedback" class="nav_link">FEED BACK</a>
+		</div>
+
+						                    <!-- Body !-->
+            {% include 'SideBar.html' %}
+
+                <div id="mbd_div2">
+				<div id="body_header"><span id="body_header_text">Logout</span></div>
+				<label style="position:relative;top:20px;color:white;background-color: #79aec8;padding: 5px">You are successfully logout from system.</label>
+
+				<div id="login_div">
+					<form form name="login_page" method="post" action="{% url 'guest_login_form' %}" onsubmit="return validateLoginPage()">
+                        {% csrf_token %}
+						<label style="font-size:14px;color:black;font-weight:bold;">Please Enter Username & Password </label>
+
+						<br><br><br><br><label style="font-size:12px;color:black;position:relative;left:-50px;font-weight:bold;">User ID:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="text" size="30" name="user" id="user" /><br>
+						<label style="color:red;position:relative;left:-20px;" id="user_label"></label>
+
+						<br><br><label style="font-size:12px;color:black;font-weight:bold;position:relative;left:-50px;">Password:</label>
+						<input type="password" size="30" name="password" id="password" /><br>
+						<label style="color:red;position:relative;left:-20px;" id="pass_label"></label><br><br>
+
+						<input type="reset" value="    reset    " style="position:relative;left:0px;">
+						<input type="submit" value="    login    " name="login" id="login"/>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		</center>
+
+
+
+	          				<!-- Footer !-->
+		<center><div id="footer">
+			<label style="position:absolute;top:10px;left:340px;">Punjab University College of Information Technology</label>
+		</div></center>
+
+        </center>
+
+		</div>
+	</body>
+</html>

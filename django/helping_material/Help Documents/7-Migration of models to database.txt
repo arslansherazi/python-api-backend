@@ -1,0 +1,21 @@
+										##########Migration of models to database in pycharm########
+										
+=>open command prompt of pycharm (View->Tool Windows->Terminal) OR (Alt+F12)
+=>Run the following commands
+	* python manage.py makemigrations Application_Name(whose models we want to migrate)
+	* python manage.py migrate
+	
+=>If we update any model in models.py file of any application then above two commands should be run to migrate changes in models to database of that 
+particular application
+
+
+							##########Migration of models to database in command prompt########
+										
+=>open command prompt
+=>Go to the project main directory
+=>Run the following commands
+	* python manage.py makemigrations Application_Name(whose models we want to migrate)
+	* python manage.py migrate
+	
+=>If we update any model in models.py file of any application then above two commands should be run to migrate changes in models to database of that 
+particular application

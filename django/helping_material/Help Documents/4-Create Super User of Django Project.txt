@@ -1,0 +1,18 @@
+//Super User is Admin of the Django Project
+//To create Super User go to the Directory where we have created our project,the Following commands are used
+
+Syntax:-
+
+Directory> python manage.py migrate            //This command initiate the database for superuser.
+Directory> python manage.py createsuperuser 
+
+Example:-
+
+D:\Programming\python\Projects\iMessenger> python manage.py migrate
+D:\Programming\python\Projects\iMessenger> python manage.py createsuperuser
+
+
+
+//After executing above commands system ask for superuser name and password, which we have to set.To login to Django Project's settings page this username
+and password is used.
+

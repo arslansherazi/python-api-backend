@@ -1,0 +1,35 @@
+=> documentation for djangorestframework-simplejwt library
+   https://pypi.org/project/djangorestframework-simplejwt/
+
+=> Add following lines of code into project's settings.py
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+        ],
+    }
+
+=> to get new access token add the following in the body
+    {
+        "refresh": "refresh_token_here"
+    }
+
+=> If access token expires then we need to get new access token using refresh token api (api/token/refresh) which
+   requires the refresh token.
+
+=> We can only generate new access token using refresh token which user gets on signup
+
+=> If we generate new access token using refresh token api while old access token is not expired then claim of old access token
+   expires which means we cannot use it further. Only new access token can be used
+
+=> if refresh token expires then we cannot generate new access token because we need it to generate new access
+   token. In that case we have to generate new access token and new refresh token using access token api
+   (api/token) but it needs user authentication
+
+=> It is recommended that access token expiration time is unlimited (lets say 10 years) so that user does not need to
+   generate token again and again
+
+=> to change token expiration time settings add the following code into project's settings.py
+    SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # default expiration time for access token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)  # default expiration time for refresh token
+}

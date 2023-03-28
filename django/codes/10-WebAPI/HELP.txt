@@ -1,0 +1,2 @@
+=>djangorestframework(3.9.2) is used in this project
+=> add 'rest_framework' under INSTALLED_APPLICATIONS in project's settings.py

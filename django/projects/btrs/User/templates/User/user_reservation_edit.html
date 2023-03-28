@@ -1,0 +1,55 @@
+	{% include 'User/Header.html'  %}
+	{% include 'User/SideBar.html' %}
+	
+			<div id="mbd_div2">
+				<div id="body_header"><span id="body_header_text">Edit Reservation Seats</span></div>
+
+                <table style='border:none;width:50%;position:relative;top:40px;text-align:left;'>
+                    <form action='{% url 'user_bookings_form' %}' method="post">
+                        {% csrf_token %}
+                         <input type="hidden" name="token" value='2'>
+                        <tr>
+                            <th style='background-color:#113267;color:white;padding:5px;width:25%;'>From</th>
+                            <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ From }}</th>
+                            <input type="hidden" name="fro" value="{{ From }}">
+                        </tr>
+
+                        <tr>
+                            <th style='background-color:#113267;color:white;padding:5px;width:25%;'>To</th>
+                            <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ To }}</th>
+                            <input type="hidden" name="to" value="{{ To }}">
+                        </tr>
+
+                        <tr>
+                            <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Date</th>
+                            <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ Date }}</th>
+                            <input type="hidden" name="date" value="{{ Date }}">
+                        </tr>
+
+                        <tr>
+                            <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Departure</th>
+                            <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ Dept }}</th>
+                            <input type="hidden" name="dept" value="{{ Dept }}">
+                        </tr>
+
+                        <tr>
+                            <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Arrival</th>
+                            <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ Arri }}</th>
+                            <input type="hidden" name="arri" value="{{ Arri }}">
+                        </tr>
+                            <tr>
+                                <th style='background-color:#113267;color:white;padding:5px;width:25%;'>No of seats</th>
+                                <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'><input type='number' width='5' min='1' max='4' name='seats' value="{{ Seats }}" required></th>
+                        </tr>
+
+
+
+                </table>
+                   <button style='position:relative;top:60px;left:-10px' type='submit'>Book Now</button>
+                         <a href='{% url 'user_reservations' %}'><button style='position:relative;top:60px;left:0px'>Go Back</button></a>
+			</form>
+            </div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	

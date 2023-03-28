@@ -1,0 +1,47 @@
+	{% include 'Header.html'  %}	
+	{% include 'SideBar.html' %}
+			
+			<div id="mbd_div2">
+				<div id="body_header"><span id="body_header_text">Feedback</span></div>
+
+				<form style="position:relative" name="feedback_form" method="post" action="{% url 'feedbackForm' %}" onsubmit="return validateFeedbackForm();">
+                    {% csrf_token %}
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Your Name:</label>
+					<input type="text" size="30" name="name" id="name" style="position:absolute;left:250px;" />
+					<label style="font-size:12px;color:red;position:absolute;left:500px;">*</label>
+					<label style="font-size:12px;color:red;position:absolute;left:510px;" id="name_label"></label>
+
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Your Email:</label>
+					<input type="email" size="30" name="email" id="email" style="position:absolute;left:250px;" />
+					<label style="font-size:12px;color:red;position:absolute;left:500px;">*</label>
+					<label style="font-size:12px;color:red;position:absolute;left:510px;" id="email_label"></label>
+
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Contact No:</label>
+					<input type="number" name="contact" id="contact" style="position:absolute;left:250px;width:18em;" />
+					<label style="font-size:12px;color:red;position:absolute;left:500px;">*</label>
+					<label style="font-size:12px;color:red;position:absolute;left:510px;" id="contact_label"></label>
+
+					<br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Your Age:</label>
+					<input type="number" name="age" id="age" style="position:absolute;left:250px;width:7em;" />
+
+					<br><br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Gender:</label>
+					<input type="radio" name="gender" id="male" value="male" style="position:absolute;left:245px;"><label style="position:absolute;left:270px;">Male</label>
+					<input type="radio" name="gender" id="female" value="female" style="position:absolute;left:310px;"><label style="position:absolute;left:335px;">Female</label>
+
+
+					<br><br><br><label style="font-size:12px;color:black;position:absolute;left:100px;">Feedback:</label>
+					<textarea rows="10" cols="50" name="feedback" id="feedback" style="position:absolute;left:250px;resize:none;" ></textarea>
+					<label style="font-size:12px;color:red;position:absolute;left:630px;">*</label>
+					<label style="font-size:12px;color:red;position:absolute;left:640px;" id="feedback_label"></label>
+
+					<input type="reset" value="    clear    " name="clear" id="clear" / style="position:absolute;left:250px;top:400px;"/>
+					<input type="submit" value="    Send    " name="send" id="send" style="position:absolute;left:350px;top:400px;"/>
+
+					<label style="font-size:14px;position:absolute;left:250px;top:440px;">Fields with <span style="color:red;">*</span> are Required.</label>
+				</form>
+
+			</div>
+		</div>
+		</center>
+		
+	{% include 'Footer.html'  %}	
