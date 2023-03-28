@@ -1,0 +1,2 @@
+HEADER_AUTHORIZED_KEY = '2ec48454-2d70-471d-933d-f588e00dc6d0'
+CONTENT_TYPE = 'application/json'

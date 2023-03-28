@@ -1,0 +1,10 @@
+=> while selecting data using raw query primary_key should be included in select clause
+=> Always use params instead of string formatting to avoid sql injection
+   (string formatting)
+   query = 'SELECT * FROM Table WHERE id = %s and name = %s' % id, name
+   model.objects.raw(query)
+
+   (params)
+   query = 'SELECT * FROM Table WHERE id = %s and name = %s'
+   params = [id, name]
+   model.objects.raw(query, params)

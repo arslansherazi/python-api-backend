@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Upload Multiple Files</title>
+    </head>
+
+    <body>
+        <form method="post" enctype="multipart/form-data" action="/upload_multiple_files">
+            <input type="file" name="files" multiple/> <br />
+            <input type="submit" value="Upload" />
+        </form>
+
+        <br /><a href="/view_files/multiple_files">View Files</a>
+    </body>
+</html>

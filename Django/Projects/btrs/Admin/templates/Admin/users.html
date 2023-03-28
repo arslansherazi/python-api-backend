@@ -1,0 +1,39 @@
+	{% include 'Admin/Header.html'  %}
+	{% include 'Admin/SideBar.html' %}
+
+     <div id="mbd_div2">
+         <div id="body_header"><span id="body_header_text">Users Management</span></div>
+
+      {% if not users %}
+          <h2>No user is registered yet</h2>
+      {% else %}
+         <table style='border:none;width:90%;position:relative;top:40px;text-align:center;'>
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:10px;width:15%;'>ID</th>
+                 <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Name</th>
+                 <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Email</th>
+                 <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Options</th>
+             </tr>
+
+             {% for u in users %}
+             <form action='{% url 'admin_users_options' %}' method="post">
+             {% csrf_token %}
+                 <tr>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ u.Username }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ u.Name }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ u.Email }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'><button style='font-size:12px;' type='submit' value='view' name='view'>View</button><button style='font-size:12px;' type='submit' value='delete' name='delete'>Delete</button></td>
+
+                     <input type='hidden' name='id' value={{ u.Username }}>
+                 </tr>
+             </form>
+
+             {% endfor %}
+         </table>
+     {% endif %}
+
+     	</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	

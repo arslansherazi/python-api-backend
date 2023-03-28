@@ -1,0 +1,25 @@
+//Django library should be install through command line instead of placing Django files folder in python directory.
+
+//To Install Django,Follow the following procedure
+
+=>Download the Django Package from the following link as a zip file (unzip folder also save in drive)
+	https://github.com/django/django (This link has django version 1.11)
+
+=>Unzip the Django project to any location(Directory) with and name.(Default Package folder name is django-master)
+
+=>Go to Command Prompt.
+=>Go to the directory where we locate the unzip Django Package folder and execute the following commands.
+
+Syntax:-
+
+Django Package Directory>               cd django-master(or our specified name).
+Django Package Directory\django-master> python setup.py install
+ 
+ 
+Example:-
+
+D:\Django>               cd django-master
+D:\Django\django-master> python setup.py install
+
+
+//After this Django Library is installed at C:\Python34\Lib\sit-packages\Django-1.11-py3.4.egg\django (C is drive where python install.It can be changed)

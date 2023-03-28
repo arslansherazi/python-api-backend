@@ -1,0 +1,255 @@
+ <!DOCTYPE html>
+
+<html>
+<head>
+	<title>Ajax using JQuery</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/modal.css">
+
+	<!--If JS is disabled then following block will be executed and redirect to noJS page.In case if JS is enabled then this block will never be executed-->
+	<noscript>
+		<meta http-equiv="refresh" content="0;url=/no_js">
+	</noscript>
+</head>
+
+<body>
+	<h2><u>Student Record System</u></h2>
+
+	<h4>Add Student</h4>
+	<input type="text" id="roll_no" placeholder="Roll No" /><br /><br />
+	<input type="text" id="name" placeholder="Name" /><br /><br />
+	<input type="text" id="degree" placeholder="Degree" /><br /><br />
+	<input type="text" id="cgpa" placeholder="Cgpa" /><br /><br />
+	<input type="button" value="Add Student" id="add_student" />
+
+	<br /><br />
+	<h4>Search Student</h4>
+	<input type="search" id="search" placeholder="Enter roll no" />
+	<input type="button" value="search" id="search_btn" /><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+	<span id="search_result" style="color:brown"></span>
+
+
+	<br /><br />
+	<h4 style="position:center">Students</h4>
+
+	<table id="students_table" style="width:100%; border: 1px solid black;  border-collapse: collapse;">
+		<tr>
+			<th align="left">Roll No</th>
+			<th align="left">Name</th>
+			<th align="left">Degree</th>
+			<th align="left">Cgpa</th>
+			<th align="left">Options</th>
+		</tr>
+	</table>
+
+	<p id="students_status" style="visibility:hidden"></p>
+
+
+	<!-- Modal -->
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h4>Update Student</h4>
+			<input type="text" id="modal_roll_no" class="modal_data" placeholder="Roll No" disabled/><br /><br />
+			<input type="text" id="modal_name" class="modal_data" placeholder="Name" /><br /><br />
+			<input type="text" id="modal_degree" class="modal_data" placeholder="Degree" /><br /><br />
+			<input type="text" id="modal_cgpa" class="modal_data" placeholder="Cgpa" /><br /><br />
+			<center><button id="update_btn_modal">Update</button></center>
+		</div>
+	</div>
+
+
+	<!-- Ajax -->
+	<script>
+		/* Ajax method for loading students from database when page is loaded */
+		$(document).ready(function ()
+        {
+			$.get("/get_all_students", function (data)
+            {
+				if (data == "no students in the database yet") {
+					$('#students_status').css("visibility", "visible");
+					$('#students_status').text("no students in the database yet");
+				}
+				else {
+					var students = JSON.parse(data);
+					students.forEach(student => {
+						$('#students_table').append("<tr>" +
+							"<td>" + student.roll_no + "</td>" +
+							"<td>" + student.name + "</td>" +
+							"<td>" + student.degree + "</td>" +
+							"<td>" + student.cgpa + "</td>" +
+							"<td><button onclick=update(this) id=" + student.roll_no + ">Update</button>" +
+							"<button onclick=deletee(this) id=" + student.roll_no + ">Delete</button></td>" +
+							+ "</tr>");
+					});
+				}
+			});
+		});
+
+		/* Handle Update Buttons */
+		function update(elem)
+		{
+			var roll_no = elem.id;
+
+			//get student data to show in modal input fields(by default)
+			$.get("/search_student?roll_no=" + roll_no, function (data)
+			{
+				if (data == "no student found")
+				{
+					alert(data)
+				}
+				else
+				{
+					var student = JSON.parse(data);
+					var modal = document.getElementById('myModal');
+					var update_btn_modal = document.getElementById('update_btn_modal');
+					var span = document.getElementsByClassName("close")[0];
+
+					modal.style.display = "block";
+
+					var modal_roll_no = document.getElementById("modal_roll_no");
+					var modal_name = document.getElementById("modal_name");
+					var modal_degree = document.getElementById("modal_degree");
+					var modal_cgpa = document.getElementById("modal_cgpa");
+
+					modal_roll_no.value = student.roll_no;
+					modal_name.value = student.name;
+					modal_degree.value = student.degree;
+					modal_cgpa.value = student.cgpa;
+
+					//close modal when user click on cross button
+					span.onclick = function ()
+					{
+						modal.style.display = "none";
+					}
+
+					//close modal when user click outside
+					window.onclick = function (event){
+						if (event.target == modal) {
+							modal.style.display = "none";
+						}
+					}
+
+					update_btn_modal.onclick=function()
+					{
+						updateStudent(elem);
+					}
+				}
+			});
+		}
+
+		/* Update Student */
+		function updateStudent(elem)
+		{
+			var roll_no = document.getElementById("modal_roll_no").value;
+			var name = document.getElementById("modal_name").value;
+			var degree = document.getElementById("modal_degree").value;
+			var cgpa = document.getElementById("modal_cgpa").value;
+
+			$.post("/update_student",
+				{
+					roll_no: roll_no,
+					name: name,
+					degree: degree,
+					cgpa: cgpa,
+				},
+				function (data) {
+					if (data == "Student is updated successfully") {
+						$('#myModal').css("display", "none");
+						alert(data);
+
+						//update student into students table
+						var index = elem.parentNode.parentNode.rowIndex;
+						var table = document.getElementById("students_table");
+						table.rows[index].cells[1].innerHTML = name;
+						table.rows[index].cells[2].innerHTML = degree;
+						table.rows[index].cells[3].innerHTML = cgpa;
+					}
+					else
+						alert(data)
+				});
+		}
+
+
+		/* Handle Delete Buttons(Delete Student) */
+		function deletee(elem) {
+			var roll_no = elem.id;
+
+			$.get("/delete_student?roll_no=" + roll_no, function (data) {
+				if (data == "Student is deleted successfully") {
+					alert(data);
+					var index = elem.parentNode.parentNode.rowIndex;
+					document.getElementById("students_table").deleteRow(index)
+				}
+				else
+					alert(data);
+			});
+		}
+
+		/* Ajax method for adding student into database and students table at the bottom using POST method */
+		$(document).ready(function ()
+        {
+			$('#add_student').click(function ()
+			{
+				roll_no = $('#roll_no').val();
+				namee = $('#name').val();
+				degree = $('#degree').val();
+				cgpa = $('#cgpa').val();
+
+				$.post("/add_student",
+					{
+						roll_no: roll_no,
+						name: namee,
+						degree: degree,
+						cgpa: cgpa,
+					},
+					function (data) {
+
+						$('#students_status').css("visibility", "hidden");
+
+						if (data == "Student is added successfully") {
+							$('#roll_no').val('');
+							$('#name').val('');
+							$('#degree').val('');
+							$('#cgpa').val('');
+
+							$('#students_table').append("<tr>" +
+								"<td>" + roll_no + "</td>" +
+								"<td>" + namee + "</td>" +
+								"<td>" + degree + "</td>" +
+								"<td>" + cgpa + "</td>" +
+								+ "</tr>");
+						}
+						else
+							alert(data)
+					});
+			});
+		});
+
+
+		/* Ajax function to search student using get method */
+		$(document).ready(function ()
+		{
+			$('#search_btn').click(function () {
+				roll_no = $('#search').val();
+
+				//searchStudent() method can return any data type as we only use get() method to receive results
+				$.get("/search_student?roll_no=" + roll_no, function (data) {
+					if (data == 'no student found') {
+						$('#search_result').text('no student found');
+					}
+					else {
+						var student = JSON.parse(data);
+						$('#search_result').text(student.name);//we use text() method here because we need to override previous data when new data comes
+						$('#search_result').append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+						$('#search_result').append(student.degree);
+						$('#search_result').append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+						$('#search_result').append(student.cgpa);
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

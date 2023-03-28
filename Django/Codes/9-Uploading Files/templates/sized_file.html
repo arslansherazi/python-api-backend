@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Upload Restricted Sized File</title>
+    </head>
+
+    <body>
+        <form method="post" enctype="multipart/form-data" action="/Files/upload_specific_size_file" onsubmit="return checkSize()">
+            {% csrf_token %}
+            <input type="file" name="file" id="file"/> <br />
+            <input type="submit" value="Upload" />
+        </form>
+
+        <br /><a href="/Files/view_files/restricted_size">View Files</a>
+
+        <script>
+            function checkSize()
+            {
+                var input = document.getElementById("file");
+                var file_size_bytes = input.files.item(0).size;
+                var file_size_KB = file_size_bytes / 1024;
+                var file_size_MB = file_size_KB/1024;
+
+                if (file_size_MB > 5.0 || file_size_KB < 10.0)
+                {
+                    alert("Please Upload file of size between 10KB-5MB....");
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>

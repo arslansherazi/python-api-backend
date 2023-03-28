@@ -1,0 +1,71 @@
+	{% include 'Admin/Header.html'  %}
+	{% include 'Admin/SideBar.html' %}
+
+     <div id="mbd_div2">
+         <div id="body_header"><span id="body_header_text">Users Management</span></div>
+
+     <form method='post' action='{% url 'admin_users_options' %}'>
+         {% csrf_token %}
+         <table style='border:none;width:50%;position:relative;top:40px;text-align:left;'>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Username</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Username}}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Password</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Password }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Name</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Name }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Email</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Email }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Contact</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Contact }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Province</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Province }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>City</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.City }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Age</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Age }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Gender</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Gender }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Address</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Address }}</th>
+             </tr>
+         </table>
+
+         <input type="hidden" name="id" value="{{ data.Username }}">
+         <button type='submit' style='position:relative;top:60px;left:-40px' name="delete">&nbsp;Delete&nbsp;</button>
+     </form>
+         <a href='{% url 'admin_users' %}'><button style='position:relative;top:40px;left:40px'>Go Back</button></a>
+
+     	</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	

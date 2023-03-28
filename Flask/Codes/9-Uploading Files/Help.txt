@@ -1,0 +1,4 @@
+=> KB = Bytes / 1000  (Kilo Bytes)
+   KiB = Bytes / 1024  (Kibi Bytes)
+=> MB = KB / 1000  (Mega Bytes)
+   MiB = KiB / 1024 and so on  (Mebi Bytes)

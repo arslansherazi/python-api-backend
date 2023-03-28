@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Book</title>
+</head>
+<body>
+    <div>
+        <h2>Update Book</h2>
+        <form method="post" action="{% url 'updateBookForm' %}">
+        {% csrf_token %}
+            Book Number:<br>
+            <input type="text" name="id" value={{book.id}} readonly><br>
+            Book Name:<br>
+            <input type="text" name="name" value={{book.name}}><br>
+            Author Name:<br>
+            <input type="text" name="author" value={{book.author}}><br>
+            Book Price:<br>
+            <input type="number" name="price" value={{book.price}}><br>
+
+            <br><button type="submit">Update Book</button>
+        </form>
+    </div>
+</body>
+</html>

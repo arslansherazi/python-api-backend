@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Upload Multiple Files using Ajax(jQuery)</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/static/js/csrf_token.js"></script>
+    </head>
+
+    <body>
+
+        <input type="file" id="ajax_multiple_files" multiple/> <br>
+        <input type="submit" id="upload" value="Upload" /><br>
+        <br><a href="/Files/view_ajax_files/ajax_multiple_files">View Files</a>
+    </body>
+
+    <script>
+        $(document).ready(function ()
+        {
+			$("#upload").click(function()
+            {
+                let form_data = new FormData();
+                let ins = document.getElementById('ajax_multiple_files').files.length;
+                for (let x = 0; x < ins; x++)
+                {
+                    form_data.append("files", document.getElementById('ajax_multiple_files').files[x]);
+                }
+
+                jQuery.ajax({
+                    url: 'upload_ajax_multiple_files',
+                    type: 'POST',
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    success: function(response)
+                    {
+                        alert(response);
+                    }
+                });
+            });
+		});
+    </script>
+</html>

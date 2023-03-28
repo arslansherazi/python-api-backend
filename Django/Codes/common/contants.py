@@ -1,0 +1,4 @@
+INTERNAL_SERVER_ERROR_MESSAGE = 'Internal server error'
+BAD_REQUEST_MESSAGE = 'Bad Request'
+SUCCESS_STATUS_CODES = [200, 201]
+ROUTING_PREFIX = 'django_apis/'

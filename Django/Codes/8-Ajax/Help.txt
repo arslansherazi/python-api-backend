@@ -1,0 +1,8 @@
+=>csrf_token must be defined for ajax post requests otherwise post requests through ajax will not be working
+
+=>add csrf_token header for ajax post requests.
+
+=>create a separate js file containing the code for adding csrf_token into request header and add this js file into the file where ajax post request exists.
+We can add code directly.
+
+(See from static/js/csrf_token.js)

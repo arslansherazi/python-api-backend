@@ -1,0 +1,35 @@
+	{% include 'Header.html'  %}
+	{% include 'SideBar.html' %}
+
+			<div id="mbd_div2">
+				<div id="body_header"><span id="body_header_text">Schedule</span></div>
+                {% if not buses %}
+                    <h2>No Bus is available</h2>
+                {% else %}
+                    <table style='border:none;width:90%;position:relative;top:40px;text-align:center;'>
+                        <tr>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>From</th>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>To</th>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Date</th>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Departure</th>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Arrival</th>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Status</th>
+                        </tr>
+
+                    {% for v in buses %}
+                        <tr>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.From }}</td>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.To }}</td>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.Date }}</td>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.Departure }}</td>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.Arrival }}</td>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.Status }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+            {% endif %}
+			</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}

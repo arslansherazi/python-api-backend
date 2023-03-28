@@ -1,0 +1,7 @@
+=> following commands are used to migrate models to database
+    python migration.py db init (only required once)
+    python migration.py db migrate
+    python migration.py db upgrade
+
+=> In case of function based api we cannot send json response using dictionary directly. We have to serialize the
+   response into json

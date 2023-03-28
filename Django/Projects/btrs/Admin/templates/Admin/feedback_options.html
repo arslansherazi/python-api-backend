@@ -1,0 +1,58 @@
+	{% include 'Admin/Header.html'  %}
+	{% include 'Admin/SideBar.html' %}
+
+     <div id="mbd_div2">
+         <div id="body_header"><span id="body_header_text">Feedbacks</span></div>
+
+     <form method='post' action='{% url 'admin_feedback_options' %}' >
+         {% csrf_token %}
+         <table style='border:none;width:50%;position:relative;top:40px;text-align:left;'>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Name</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Name}}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Email</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Email }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Contact</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Contact }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Age</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Age }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Gender</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:75%;padding-left:40px;'>{{ data.Gender }}</th>
+             </tr>
+
+             <tr>
+                 <th style='background-color:#113267;color:white;padding:5px;width:25%;'>Feedback</th>
+                 <th style='background-color:#B9CEE0;color:white;padding:5px;width:90%;padding-left:40px;'>{{ data.Feedback }}</th>
+             </tr>
+         </table>
+
+          <input type="hidden" name="name" value="{{ data.Name }}">
+          <input type="hidden" name="email" value="{{ data.Email }}">
+          <input type="hidden" name="contact" value="{{ data.Contact }}">
+          <input type="hidden" name="age" value="{{ data.Age }}">
+          <input type="hidden" name="gender" value="{{ data.Gender }}">
+         <input type="hidden" name="feedback" value="{{ data.Feedback }}">
+
+         <button type='submit' style='position:relative;top:60px;left:-40px' name="cancel">&nbsp; Delete &nbsp;</button>
+
+     </form>
+         <a href='{% url 'admin_feedback' %}'><button style='position:relative;top:40px;left:40px'>Go Back</button></a>
+
+     	</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	

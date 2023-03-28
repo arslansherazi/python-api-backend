@@ -1,0 +1,29 @@
+	{% include 'Header.html'  %}	
+	{% include 'SideBar.html' %}
+	
+			<div id="mbd_div2">
+				<div id="body_header"><span id="body_header_text">Fares</span></div>
+                {% if not fares %}
+                    <h2>No schedule is available</h2>
+                {% else %}
+                    <table style='border:none;width:50%;position:relative;top:40px;text-align:center;'>
+                        <tr>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>From</th>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>To</th>
+                            <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Fare</th>
+                        </tr>
+
+                    {% for v in fares %}
+                        <tr>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.From }}</td>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.To }}</td>
+                            <td style='background-color:#B9CEE0;padding:5px;'>{{ v.Fare}}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+            {% endif %}
+			</div>
+		</div>
+		</center>
+		
+	{% include 'Footer.html'  %}				

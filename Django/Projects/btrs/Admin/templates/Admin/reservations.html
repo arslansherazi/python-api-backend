@@ -1,0 +1,54 @@
+	{% include 'Admin/Header.html'  %}
+	{% include 'Admin/SideBar.html' %}
+
+     <div id="mbd_div2">
+         <div id="body_header"><span id="body_header_text">Manage Reservations</span></div>
+
+      {% if not res %}
+          <h2>No reservation is made yet</h2>
+      {% else %}
+         <table style='border:none;width:90%;position:relative;top:40px;text-align:center;'>
+            <tr>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>User ID</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>From</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>To</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Date</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Departure</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Arrival</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Seats</th>
+                <th style='background-color:#113267;color:white;padding:10px;width:15%;'>Options</th>
+            </tr>
+
+             {% for r in res %}
+             <form action='{% url 'admin_reservations_options' %}' method='post'>
+             {% csrf_token %}
+                 <tr>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ r.Username }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ r.From }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ r.To }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ r.Date }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ r.Departure }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ r.Arrival }}</td>
+                     <td style='background-color:#B9CEE0;padding:5px;'>{{ r.Seats }}</td>
+
+                     <input type='hidden' name='uId' value='{{ r.Username }}'>
+                     <input type='hidden' name='from' value='{{ r.From }}'>
+                     <input type='hidden' name='to' value='{{ r.To }}'>
+                     <input type='hidden' name='date' value='{{ r.Date }}'>
+                     <input type='hidden' name='dept' value='{{ r.Departure }}'>
+                     <input type='hidden' name='arri' value='{{ r.Arrival }}'>
+                     <input type='hidden' name='seats' value='{{ r.Seats }}'>
+
+                     <td style='background-color:#B9CEE0;padding:5px;'><button style='font-size:12px;' type='submit' name='cancel' value='cancel'>Cancel</button></td>
+                 </tr>
+             </form>
+             {% endfor %}
+         </table>
+
+     {% endif %}
+
+     	</div>
+		</div>
+		</center>
+
+	{% include 'Footer.html'  %}	

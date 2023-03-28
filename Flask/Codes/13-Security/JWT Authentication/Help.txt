@@ -1,0 +1,16 @@
+=>By default, access tokens have 15 minutes lifetime while refresh tokens have 30 days lifetime
+=>we cannot access jwt_required endpoints using refresh token and jwt_refresh_token_required endpoints using
+  access token.
+=> If access token expires then we need to get new access token using refresh token api (api/token/refresh) which
+   requires the refresh token.
+
+=> We can only generate new access token using refresh token which user gets on signup
+
+=> If we generate new access token using refresh token api while old access token is not expired then claim of old access token
+   expires which means we cannot use it further. Only new access token can be used
+
+=> if refresh token expires then we cannot generate new access token because we need it to generate new access
+   token. In that case we have to generate new access token and new refresh token but it required authentication
+
+=> It is recommended that access token expiration time is unlimited (lets say 10 years) so that user does not need to
+   generate token again and again
